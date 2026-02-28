@@ -8,8 +8,8 @@ namespace AI_CampaignGenerator.Shared.DTOS.ProductDTOS
 {
    public class CreateProductDTO
     {
-        public string ProductCategory { get; set; } = default!;
-        public string ProductSubCategory { get; set; } = default!;
+        public string Category { get; set; } = default!;
+        public string SubCategory { get; set; } = default!;
  
         public string ProductName { get; set; } = default!;
         

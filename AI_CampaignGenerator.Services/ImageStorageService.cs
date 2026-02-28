@@ -16,54 +16,76 @@ namespace AI_CampaignGenerator.Services
         {
             _env = env;
         }
-        
-        public async Task<string> SaveImageAsync(IFormFile file)
+
+        private string GetFolderPath(string folderName)
         {
-           if(file==null || file.Length==0)
-                return string.Empty;
-            //ensure webroot is not null
             var webRoot = _env.WebRootPath;
+
             if (string.IsNullOrEmpty(webRoot))
                 throw new Exception("WebRootPath is not configured.");
-            var folderPath = Path.Combine(webRoot, "images", "ai-generated");
+
+            var folderPath = Path.Combine(webRoot, "images", folderName);
+
             if (!Directory.Exists(folderPath))
                 Directory.CreateDirectory(folderPath);
-            var fileName=$"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
-            var filePath=Path.Combine(folderPath, fileName);
-            using(var stream=new FileStream(filePath,FileMode.Create))
+
+            return folderPath;
+        }
+
+        // Save using IFormFile (User Upload)
+        public async Task<string> SaveImageAsync(IFormFile file, string folderName)
+        {
+            if (file == null || file.Length == 0)
+                return string.Empty;
+
+            var folderPath = GetFolderPath(folderName);
+
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
+            var filePath = Path.Combine(folderPath, fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 await file.CopyToAsync(stream);
             }
-            return $"/images/ai-generated/{fileName}";
+
+            return $"/images/{folderName}/{fileName}";
         }
-        public Task DeleteImageAsync(string imageUrl)
+
+        // Save using byte[] (AI Generated Images)
+        public async Task<string> SaveImageAsync(byte[] imageBytes, string folderName)
         {
-            if(string.IsNullOrEmpty(imageUrl)) 
+            if (imageBytes == null || imageBytes.Length == 0)
+                return string.Empty;
+
+            var folderPath = GetFolderPath(folderName);
+
+            var fileName = $"{Guid.NewGuid()}.png";
+            var filePath = Path.Combine(folderPath, fileName);
+
+            await File.WriteAllBytesAsync(filePath, imageBytes);
+
+            return $"/images/{folderName}/{fileName}";
+        }
+
+        // Delete Image
+        public Task DeleteImageAsync(string imageUrl, string folderName)
+        {
+            if (string.IsNullOrEmpty(imageUrl))
                 return Task.CompletedTask;
-            var fileName=Path.GetFileName(imageUrl);
+
+            var fileName = Path.GetFileName(imageUrl);
+
             var filePath = Path.Combine(
                 _env.WebRootPath,
                 "images",
-                "ai-generated",
+                folderName,
                 fileName
-                );
-            if(File.Exists(filePath))
+            );
+
+            if (File.Exists(filePath))
                 File.Delete(filePath);
+
             return Task.CompletedTask;
-        }
-
-        public async Task<string> SaveImageAsync(byte[] imageBytes)
-        {
-            
-           var webRoot = _env.WebRootPath;
-            var folderPath = Path.Combine(webRoot, "images", "ai-generated");
-            if (!Directory.Exists(folderPath))
-                Directory.CreateDirectory(folderPath);
-            var fileName = $"{Guid.NewGuid()}.png";
-            var filePath=Path.Combine(folderPath, fileName);
-            await File.WriteAllBytesAsync(filePath, imageBytes);
-            return $"/images/ai-generated/{fileName}";
-
         }
     }
 }

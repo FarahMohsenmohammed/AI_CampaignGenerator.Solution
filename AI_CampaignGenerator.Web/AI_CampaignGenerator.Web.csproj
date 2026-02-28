@@ -20,7 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="CustomMiddleWare\" />
+    <Folder Include="NewFolder\" />
     <Folder Include="wwwroot\images\ai-generated\" />
+    <Folder Include="wwwroot\images\products\" />
   </ItemGroup>
 
 </Project>

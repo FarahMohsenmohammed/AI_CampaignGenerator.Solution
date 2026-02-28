@@ -13,10 +13,10 @@ namespace AI_CampaignGenerator.Presistence.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.Property(p => p.ProductCategory)
+            builder.Property(p => p.Category)
                 .HasColumnType("varchar(100)")
                 .IsRequired();
-            builder.Property(p => p.ProductSubCategry)
+            builder.Property(p => p.SubCategry)
                 .HasMaxLength(100);
 
             builder.Property(p => p.Material)

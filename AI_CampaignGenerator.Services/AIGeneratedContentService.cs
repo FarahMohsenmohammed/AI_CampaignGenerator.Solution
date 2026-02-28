@@ -56,7 +56,7 @@ namespace AI_CampaignGenerator.Services
             foreach (var imageBytes in generatedImages)
             {
                 var url = await _imageStorage
-                    .SaveImageAsync(imageBytes);
+                    .SaveImageAsync(imageBytes,"ai-generated");
 
                 imageEntities.Add(
                     new AIGeneratedContentImages
@@ -101,7 +101,7 @@ namespace AI_CampaignGenerator.Services
             foreach (var image in content.Images)
             {
                 await _imageStorage
-                    .DeleteImageAsync(image.GeneratedImageURL);
+                    .DeleteImageAsync(image.GeneratedImageURL,"ai-generated");
             }
 
             // Delete from DB

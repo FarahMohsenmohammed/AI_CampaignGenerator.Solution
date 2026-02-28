@@ -11,8 +11,8 @@ namespace AI_CampaignGenerator.Domain.Entities.ProductModule
     public class Product:BaseEntity<int>
     {
         //createsAt=Date of base (will be reused)
-        public string ProductCategory { get; set; } = default!;
-        public string ProductSubCategry { get; set; } = default!;
+        public string Category { get; set; } = default!;
+        public string SubCategry { get; set; } = default!;
         public string Material {  get; set; } = default!;
         public string ProductName { get; set; } =default!;
         public string? ProductDescription { get; set; }

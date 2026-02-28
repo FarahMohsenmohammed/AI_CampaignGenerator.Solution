@@ -4,6 +4,7 @@ using AI_CampaignGenerator.Presistence.Data.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AI_CampaignGenerator.Presistence.Data.Migrations
 {
     [DbContext(typeof(AICampaignGeneratorDbContext))]
-    partial class AICampaignGeneratorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260228182704_Adding productcategory and subcategory ")]
+    partial class Addingproductcategoryandsubcategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

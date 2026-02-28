@@ -30,7 +30,7 @@ namespace AI_CampaignGenerator.Web
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddAutoMapper(typeof(ServicesAssemplyReference));
             builder.Services.AddScoped<IUserService, UserService>();
-            builder.Services.AddScoped<ImageStorageService, ImageStorageService>();
+            builder.Services.AddScoped<IImageStorageService, ImageStorageService>();
             builder.Services.AddHttpClient();
             builder.Services.AddScoped<IAIGeneratedContentService, AIGeneratedContentService>();
 
