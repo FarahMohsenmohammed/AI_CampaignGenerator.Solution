@@ -5,7 +5,10 @@ using AI_CampaignGenerator.Presistence.Data.DbContexts;
 using AI_CampaignGenerator.Presistence.Data.Repositories;
 using AI_CampaignGenerator.Services;
 using AI_CampaignGenerator.ServicesAbstraction;
+using AI_CampaignGenerator.Web.CustomMiddleWare;
 using AI_CampaignGenerator.Web.Extentions;
+using AI_CampaignGenerator.Web.Factory;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace AI_CampaignGenerator.Web
@@ -33,6 +36,10 @@ namespace AI_CampaignGenerator.Web
             builder.Services.AddScoped<IImageStorageService, ImageStorageService>();
             builder.Services.AddHttpClient();
             builder.Services.AddScoped<IAIGeneratedContentService, AIGeneratedContentService>();
+            builder.Services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.InvalidModelStateResponseFactory = ApiResponseFactory.GenerateApiValidationResponse;
+            });
 
 
             var app = builder.Build();
@@ -57,6 +64,7 @@ namespace AI_CampaignGenerator.Web
             app.UseStaticFiles();
 
             app.UseAuthorization();
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
 
 
             app.MapControllers();
