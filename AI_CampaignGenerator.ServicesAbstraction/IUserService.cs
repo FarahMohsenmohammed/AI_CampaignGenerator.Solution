@@ -10,10 +10,10 @@ namespace AI_CampaignGenerator.ServicesAbstraction
    public interface IUserService
     {
         Task<IEnumerable<UserDTO>> GetAllUsersAsync();
-        Task<UserDetailsDTO?>GetUserByIdAsync(int id);
-        Task<UserDetailsDTO?> CreateUserAsync(CreateUserDTO dto);
-        Task<UserDetailsDTO?> UpdateUserAsync(int id, CreateUserDTO dto);
-        Task<bool> DeleteUserAsync(int id);
+        Task<UserDetailsDTO>GetUserByIdAsync(int id);
+        Task<UserDetailsDTO> CreateUserAsync(CreateUserDTO dto);
+        Task<UserDetailsDTO> UpdateUserAsync(int id, CreateUserDTO dto);
+        Task DeleteUserAsync(int id);
 
     }
 }

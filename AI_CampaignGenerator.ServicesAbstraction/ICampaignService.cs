@@ -11,9 +11,9 @@ namespace AI_CampaignGenerator.ServicesAbstraction
     public interface ICampaignService
     {
         Task<PaginatedResult<CampaignDTO>> GetCampaignAsync(CampaignQueryParams queryParams);
-        Task<CampaignDTO?> GetCampaignByIdAsync(int campaginId);
+        Task<CampaignDTO> GetCampaignByIdAsync(int campaginId);
         Task<CampaignDTO> CreateCampaignAsync(int userId,CreateCampaignDTO dto);
-        Task<bool>DeleteCampaignAsync(int campaginId);
+        Task DeleteCampaignAsync(int campaginId);
 
 
     }

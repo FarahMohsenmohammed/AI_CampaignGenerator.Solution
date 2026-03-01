@@ -10,9 +10,9 @@ namespace AI_CampaignGenerator.ServicesAbstraction
    public interface IProductService
     {
         Task<IEnumerable<ProductDTO>> GetAllProductsAsync(int userId);
-        Task<ProductDTO?>GetProductByIdAsync(int id);
+        Task<ProductDTO>GetProductByIdAsync(int id);
         Task<ProductDTO> CreateProductAsync(int userId, CreateProductDTO dto);
-       Task<ProductDTO?> UpdateProductAsync(int id, CreateProductDTO dto);
-        Task<bool> DeleteProductAsync(int id);
+       Task<ProductDTO> UpdateProductAsync(int id, CreateProductDTO dto);
+        Task DeleteProductAsync(int id);
     }
 }
