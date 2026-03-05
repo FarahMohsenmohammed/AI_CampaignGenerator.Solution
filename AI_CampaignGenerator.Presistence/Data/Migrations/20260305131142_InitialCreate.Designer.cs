@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AI_CampaignGenerator.Presistence.Data.Migrations
 {
     [DbContext(typeof(AICampaignGeneratorDbContext))]
-    [Migration("20260228182704_Adding productcategory and subcategory ")]
-    partial class Addingproductcategoryandsubcategory
+    [Migration("20260305131142_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -177,7 +177,7 @@ namespace AI_CampaignGenerator.Presistence.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("SubCategry")
+                    b.Property<string>("SubCategory")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");

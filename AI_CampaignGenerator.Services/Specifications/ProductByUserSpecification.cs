@@ -11,7 +11,7 @@ namespace AI_CampaignGenerator.Services.Specifications
     {
         public ProductByUserSpecification(int userId):base(p=>p.UserId==userId)
         {
-            
+            AddInclude(p => p.ProductImages);   
         }
     }
 }

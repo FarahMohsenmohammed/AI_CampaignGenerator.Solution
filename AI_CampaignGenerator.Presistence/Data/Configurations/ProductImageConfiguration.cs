@@ -19,8 +19,13 @@ namespace AI_CampaignGenerator.Presistence.Data.Configurations
               .HasColumnType("varchar(500)")
               .HasMaxLength(500)
               .IsRequired();
+            builder.HasOne(pi=>pi.Product)
+                .WithMany(p=>p.ProductImages)
+                .HasForeignKey(p => p.ProductId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-           
+
+
         }
     }
 }

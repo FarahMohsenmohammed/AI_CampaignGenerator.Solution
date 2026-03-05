@@ -15,10 +15,10 @@ namespace AI_CampaignGenerator.Services.MappingProfiles
         {
             //user=>userdto
             CreateMap<User,UserDTO>()
-                .ForMember(dest=>dest.FullName,opt=>opt.MapFrom(src=>$"{src.FirstName}{src.LastName}"));
+                .ForMember(dest=>dest.FullName,opt=>opt.MapFrom(src=>$"{src.FirstName} {src.LastName}"));
             //user=>userDetailsdto
             CreateMap<User, UserDetailsDTO>()
-                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => $"{src.FirstName}{src.LastName}"));
+                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"));
             //createuserdto=>user
             CreateMap<CreateUserDTO, User>()
                 .ForMember(dest => dest.JoinDate, opt => opt.Ignore());

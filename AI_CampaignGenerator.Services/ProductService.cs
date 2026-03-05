@@ -41,20 +41,50 @@ namespace AI_CampaignGenerator.Services
 
             return _mapper.Map<ProductDTO>(product);
         }
-
         public async Task<ProductDTO> CreateProductAsync(int userId, CreateProductDTO dto)
         {
+            var productRepo = _unitOfWork.GetRepository<Product, int>();
+            var imageRepo = _unitOfWork.GetRepository<ProductImages, int>();
+
             var product = _mapper.Map<Product>(dto);
             product.UserId = userId;
 
-            await _unitOfWork
-                .GetRepository<Product, int>()
-                .AddAsync(product);
+            await productRepo.AddAsync(product);
+            await _unitOfWork.SaveChangesAsync();
+
+            // إضافة الصور
+            if (dto.ImageUrls != null && dto.ImageUrls.Any())
+            {
+                foreach (var url in dto.ImageUrls)
+                {
+                    var image = new ProductImages
+                    {
+                        ImageURL = url,
+                        ProductId = product.Id
+                    };
+
+                    await imageRepo.AddAsync(image);
+                }
+            }
 
             await _unitOfWork.SaveChangesAsync();
 
             return _mapper.Map<ProductDTO>(product);
         }
+
+        //public async Task<ProductDTO> CreateProductAsync(int userId, CreateProductDTO dto)
+        //{
+        //    var product = _mapper.Map<Product>(dto);
+        //    product.UserId = userId;
+
+        //    await _unitOfWork
+        //        .GetRepository<Product, int>()
+        //        .AddAsync(product);
+
+        //    await _unitOfWork.SaveChangesAsync();
+
+        //    return _mapper.Map<ProductDTO>(product);
+        //}
 
         public async Task<ProductDTO> UpdateProductAsync(int id, CreateProductDTO dto)
         {

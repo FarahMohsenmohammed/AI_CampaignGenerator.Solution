@@ -19,6 +19,6 @@ namespace AI_CampaignGenerator.Shared.DTOS.ProductDTOS
         public string TargetAudiencePersona { get; set; } = default!;
         public string? USP { get; set; }
         //after apload
-        public List<string> ImageUrls { get; set; } = new();
+        public List<string>? ImageUrls { get; set; } 
     }
 }

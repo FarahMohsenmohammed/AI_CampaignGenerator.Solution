@@ -12,7 +12,7 @@ namespace AI_CampaignGenerator.Domain.Entities.ProductModule
     {
         //createsAt=Date of base (will be reused)
         public string Category { get; set; } = default!;
-        public string SubCategry { get; set; } = default!;
+        public string SubCategory { get; set; } = default!;
         public string Material {  get; set; } = default!;
         public string ProductName { get; set; } =default!;
         public string? ProductDescription { get; set; }

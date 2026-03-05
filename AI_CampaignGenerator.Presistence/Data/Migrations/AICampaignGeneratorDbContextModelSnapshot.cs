@@ -174,7 +174,7 @@ namespace AI_CampaignGenerator.Presistence.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("SubCategry")
+                    b.Property<string>("SubCategory")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");

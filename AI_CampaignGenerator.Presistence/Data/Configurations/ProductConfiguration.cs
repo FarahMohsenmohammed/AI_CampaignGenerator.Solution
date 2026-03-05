@@ -16,7 +16,7 @@ namespace AI_CampaignGenerator.Presistence.Data.Configurations
             builder.Property(p => p.Category)
                 .HasColumnType("varchar(100)")
                 .IsRequired();
-            builder.Property(p => p.SubCategry)
+            builder.Property(p => p.SubCategory)
                 .HasMaxLength(100);
 
             builder.Property(p => p.Material)

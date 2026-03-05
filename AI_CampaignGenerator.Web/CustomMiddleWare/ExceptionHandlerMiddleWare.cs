@@ -22,7 +22,10 @@ namespace AI_CampaignGenerator.Web.CustomMiddleWare
                 try
                 {
                     await _next(context);
+                if(context.Response.StatusCode==StatusCodes.Status404NotFound&&!context.Response.HasStarted)
+                {
                     await HandleNotFoundEndpointAsync(context);
+                }
                 }
                 catch (Exception ex)
                 {

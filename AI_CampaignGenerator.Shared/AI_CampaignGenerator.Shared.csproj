@@ -10,4 +10,8 @@
     <ProjectReference Include="..\AI_CampaignGenerator.Domain\AI_CampaignGenerator.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTOS\IdentityDTOS\" />
+  </ItemGroup>
+
 </Project>
